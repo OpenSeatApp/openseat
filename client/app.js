@@ -1,6 +1,6 @@
 
-angular.module('openSeatApp', ['ngRoute', 'openSeat.services', 'dashboardModule','routeSetupModule', 'selectDriverModule'])
 
+angular.module('openSeatApp', ['ngRoute', 'openSeat.services', 'dashboardModule','routeSetupModule', 'selectDriverModule'])
 
   .config(['$routeProvider',
     function($routeProvider) {
