@@ -82,4 +82,84 @@ angular.module('openSeat.services', [])
 		};
 
 		return userMethods;
-	});
+	})
+
+	.factory('RenderRoute', function($window, $q) {
+
+		//the reason we need asynchronicity here is bcs the source has to 
+			//exist and be loaded before we try to do anything with the map
+		//but we have to specify a callback in the URL to google
+		//so for the timing to work out…
+
+		var url = "https://maps.googleapis.com/maps/api/js?key=KEY_GOES_HERE&callback=mapInit";
+		var script = document.createElement('script');
+		script.src = url;
+		var asyncLoad = function() {
+			console.log('asyncLoad fired');
+			document.body.appendChild(script);
+			myDefer.resolve();
+		};
+
+		var myDefer = $q.defer();
+		//get an MVP first
+			//a chance to move markers can come later
+
+		// routeMethods.renderMap = function(id, center, zoom, $scope) {
+		// 	console.log($window);
+		// 	var map = new $window.google.maps.Map(document.getElementById(id), {
+		// 		center: center,
+		// 		zoom: zoom
+		// 	});
+
+		$window.dummyCallback = function() {
+			console.log('dummy fired');
+			myDefer.resolve();
+		};
+
+		asyncLoad(dummyCallback);
+
+			// $window.renderMap = function(id, center, zoom, $scope) {
+			// 	console.log(this);
+			// 	document.body.appendChild(script);
+			// 	var map = new this.google.maps.Map(document.getElementById(id), {
+			// 		center: center,
+			// 		zoom: zoom
+			// 	});
+
+			// 	this.google.maps.event.addListener(map, 'click', function(event) {
+			// 		addMarker(event.latLng, map);
+			// 	});
+
+			$window.mapInit = function() {
+				console.log('mapInit mentioned');
+				//i'll try to make id, center, zoom variables if I can later
+				var map = new $window.google.maps.Map(document.getElementById('map'), {
+					center: {lat: 37.784, lng: -122.409},
+					zoom: 14
+				});
+			};
+
+				return {mapIsThere: myDefer.promise,
+					mapInit: $window.mapInit};
+			});
+
+			//contains key. DOES NOT GO TO GITHUB
+			
+		
+		// $window.google.maps.event.addListener(map, 'click', function(event) {
+		// 	addMarker(event.latLng, map);
+		// 	//sth to extract the coordinates
+		// 	//possibly remove the previous label
+		// });
+
+	// 	var addMarker = function(location, map) {
+	// 		var marker = new google.maps.Marker({
+	// 			position: location,
+	// 			label: 'A',
+	// 			map: map
+	// 		});
+		// });
+
+// 	// 	return routeMethods;
+
+// });
