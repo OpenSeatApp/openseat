@@ -9,6 +9,8 @@ angular.module('selectDriverModule', [])
       });
     };
 
+    //my guess is that I want the function on initialize to create the elements, bind them to scope
+
     if (passengerRouteId) {
       initializeDriverRoutes(passengerRouteId);
     }
