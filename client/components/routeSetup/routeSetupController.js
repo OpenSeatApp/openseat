@@ -20,7 +20,7 @@ angular.module('routeSetupModule', [])
 			routeObj.toMinutes = Number($('#toMinutes').val());
 			routeObj.seats = Number($('#seats').val());
 			routeObj.fee = Number($('#fee').val());
-
+			routeObj.name = $rootScope.user.name;
 
 			var newRoute = PostRoute.newRoute;
 			var data = {};

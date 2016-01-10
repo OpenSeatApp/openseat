@@ -125,9 +125,12 @@ module.exports = {
     findUser({ _id: userId })
       .then(function(user){
         createPassengerRoutes({
+          name: passengerRoute.name,
           start: passengerRoute.start,
           end: passengerRoute.end,
           days: passengerRoute.days,
+          endLabel : passengerRoute.endLabel,
+          startLabel : passengerRoute.startLabel,
           fromHour: passengerRoute.fromHour,
           fromMinutes: passengerRoute.fromMinutes,
           toHour: passengerRoute.toHour,
@@ -163,9 +166,12 @@ module.exports = {
     findUser({ _id: userId })
       .then(function(user){
         createDriverRoutes({
+          name : driverRoute.name,
           start: driverRoute.start,
           end: driverRoute.end,
           days: driverRoute.days,
+          endLabel : driverRoute.endLabel,
+          startLabel : driverRoute.startLabel,
           fromHour: driverRoute.fromHour,
           fromMinutes: driverRoute.fromMinutes,
           toHour: driverRoute.toHour,

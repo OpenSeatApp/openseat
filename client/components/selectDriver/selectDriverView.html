@@ -1,11 +1,11 @@
 <div ng-repeat = 'route in driverRoutes track by $index'>
   {{route.driver.name}}<br>
   <img src="{{route.driver.picture}}"><br>
-  {{route.driverRoute._id}}<br>
+  {{route.driverRoute.name}}<br>
   Seats: {{route.driverRoute.seats}}<br>
   Fee: ${{route.driverRoute.fee}}<br>
-  {{route.driverRoute.start}}<br>
-  {{route.driverRoute.end}}<br>
+  {{route.driverRoute.startLabel}}<br>
+  {{route.driverRoute.endLabel}}<br>
   <a href="" ng-click="selectDriverRoute(route.driverRoute._id)">Select Route</a>
   <hr>
 </div>

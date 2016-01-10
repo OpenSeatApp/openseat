@@ -83,38 +83,42 @@ angular.module('openSeat.services', [])
 
 		return userMethods;
 	})
-	.factory('PostRoute', function($http) {
+	.factory('PostRoute', function($http, $location) {
 		var postRoute = {};
 
 		postRoute.newRoute = function(route) {
 			if (route.isDriver) {
 				$http.post('/api/driverRoute', route)
 					.then(function(result) {
-						console.log(result, 'driver');
+						$location.path('/home');
 					});
 			} else {
 				$http.post('/api/passengerRoute', route)
 					.then(function(result) {
-						console.log(result, 'passenger');
+						var url = '/selectDriver/' + result.data._id;
+						$location.path(url);
 					});
 			}
 		};
 		return postRoute;
 	})
-	.factory('Routes', function($http){
+	.factory('Routes', function($http) {
 
-		var bestDriverRoutesForPassengerRouteId = function(passengerRouteId, callback){
+		var bestDriverRoutesForPassengerRouteId = function(passengerRouteId, callback) {
 			$http.get('/api/bestDriverRoutesForPassengerRouteId/' + passengerRouteId)
-				.then(function(driverRoutes){
+				.then(function(driverRoutes) {
 					callback(driverRoutes.data);
 				});
 		};
 
-		var userInterestedInDriverRoute = function(passengerRouteId, driverRouteId){
+		var userInterestedInDriverRoute = function(passengerRouteId, driverRouteId) {
 			return $http({
 				method: 'POST',
 				url: '/api/userInterestedInDriverRoute/',
-				data: { passengerRouteId: passengerRouteId, driverRouteId: driverRouteId }
+				data: {
+					passengerRouteId: passengerRouteId,
+					driverRouteId: driverRouteId
+				}
 			});
 		};
 
@@ -122,5 +126,4 @@ angular.module('openSeat.services', [])
 			bestDriverRoutesForPassengerRouteId: bestDriverRoutesForPassengerRouteId,
 			userInterestedInDriverRoute: userInterestedInDriverRoute
 		};
-	})
-	;
+	});

@@ -5,6 +5,7 @@ angular.module('selectDriverModule', [])
 
     var initializeDriverRoutes = function(passengerRouteId){
       Routes.bestDriverRoutesForPassengerRouteId(passengerRouteId, function(driverRoutes){
+        console.log(driverRoutes, 'these are the driver routes');
         $scope.driverRoutes = driverRoutes;
       });
     };
