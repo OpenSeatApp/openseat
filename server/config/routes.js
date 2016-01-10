@@ -24,23 +24,25 @@ module.exports = function (app, express) {
   app.get('/api/bestDriverRoutesForPassengerRouteId/:id', routesController.bestDriverRoutesForPassengerRouteId);
 
   app.get('/api/loggedin', function(req, res) {
-    res.send(req.isAuthenticated() ? req.user : '0');
+    res.send(req.user);
+    //obviously, for a real user, we would do the line below this
+    // res.send(req.isAuthenticated() ? req.user : '0');
   });
 
-  app.get('/api/auth/facebook',
-    passport.authenticate('facebook', { scope: ['public_profile'] }),
-    function(req, res){});
+  // app.get('/api/auth/facebook',
+  //   passport.authenticate('facebook', { scope: ['public_profile'] }),
+  //   function(req, res){});
 
-  app.get('/api/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/#/login' }),
-    function(req, res) {
-      res.redirect('/#/');
-    });
+  // app.get('/api/auth/facebook/callback',
+  //   passport.authenticate('facebook', { failureRedirect: '/#/login' }),
+  //   function(req, res) {
+  //     res.redirect('/#/');
+  //   });
 
-  app.get('/api/logout', function(req, res){
-    req.logout();
-    res.redirect('/#/login');
-  });
+  // app.get('/api/logout', function(req, res){
+  //   req.logout();
+  //   res.redirect('/#/login');
+  // });
 
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
