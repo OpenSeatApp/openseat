@@ -101,7 +101,7 @@ module.exports = {
                 [[driverRoute.fromHour, driverRoute.fromMinutes],[driverRoute.toHour, driverRoute.toMinutes]],
                 passengerRoute.days, driverRoute.days);
 
-              if (distance){
+              if (distance || distance === 0){
                 results.push({ driverRoute: driverRoute, distance: distance, driver: driverRoute.driverInformation });
               }
             }

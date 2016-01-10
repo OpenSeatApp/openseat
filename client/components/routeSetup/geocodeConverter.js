@@ -24,7 +24,6 @@ function geocodeAddressEnd(geocoder, data, start, newRoute) {
 	geocoder.geocode({
 		'address': address
 	}, function(results, status) {
-		console.log(data)
 		end[0] = results[0].geometry.location.lat();
 		end[1] = results[0].geometry.location.lng();
 		data.route.start = start;
