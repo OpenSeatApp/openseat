@@ -18,6 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="./assets/css/mainView.css">
 	<link rel="stylesheet" href="./assets/css/dashboardView.css">
 	<link rel="stylesheet" href="./assets/css/routeSetupView.css">
+	<link rel="stylesheet" href="./assets/css/selectDriver.css">
 
   <title>OpenSeat</title>
 </head>
@@ -27,6 +28,8 @@
 	</div>
 	<div class = 'menuBar'>
 	  <ul>
+	  	<!-- take out this first link. This link is only here for testing purposes. -->
+	  	<li><a href="#/selectDriver/"></a></li>
 	  	<li><a href="#/home">Home</a></li>
 	  	<li><a href="#/createRoute">Create Route</a></li>
 	  	<li><a href="#/about">About</a></li>
@@ -44,6 +47,7 @@
 	<script src = './components/routeSetup/routeSetupController.js'></script>
 	<script src = './components/selectDriver/selectDriverController.js'></script>
 	<script src = './components/routeSetup/geocodeConverter.js'></script>
+	<script src="./components/selectDriver/mapCreator.js"></script>
 	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBytwzUydYLU_mL4X0hN4WvGLDfTQkWNJs&signed_in=true"
         async defer></script>
 </body>
