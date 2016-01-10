@@ -22,10 +22,8 @@ module.exports = function(firstRoute, secondRoute, firstTime, secondTime, firstD
 
   var firstInMinutes = [toMinutes(firstTime[0]), toMinutes(firstTime[1])];
   var secondInMinutes = [toMinutes(secondTime[0]), toMinutes(secondTime[1])];
-
   var sourceDist = spherical.distance(firstRoute[0], secondRoute[0]);
   var destDist = spherical.distance(firstRoute[1], secondRoute[1]);
-
   var beginDist = Math.max(firstInMinutes[0] - secondInMinutes[0], secondInMinutes[0] - firstInMinutes[0]);
   var endDist = Math.max(firstInMinutes[1] - secondInMinutes[1], secondInMinutes[1] - firstInMinutes[1]);
 
