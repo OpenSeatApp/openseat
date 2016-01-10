@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var PassengerRoutesSchema = new mongoose.Schema({
   start: [Number],
   end: [Number],
+  startLabel: String,
+  endLabel: String,
   days: [{
     type: Boolean,
     default: [false, false, false, false, false, false, false]
@@ -11,11 +13,10 @@ var PassengerRoutesSchema = new mongoose.Schema({
   fromMinutes: {min: 0, max: 60, type: Number},
   toHour: {min: 0, max: 24, type: Number},
   toMinutes: {min: 0, max: 60, type: Number},
-  endLabel: String,
-  name: String,
-  startLabel: String,
-  driverRoutesIAmInterestedIn: [{ type: mongoose.Schema.Types.ObjectId, ref: 'driverroutes' }],
-  confirmedDriverRoute: {type: mongoose.Schema.Types.ObjectId, ref: 'driverroutes'}
+
+  driverRoutesIAmInterestedIn: [{ type: mongoose.Schema.Types.ObjectId, ref: 'driverRoutes' }],
+  confirmedDriverRoute: { type: mongoose.Schema.Types.ObjectId, ref: 'driverRoutes' },
+  passengerInformation: { type: mongoose.Schema.Types.ObjectId, ref: 'users' }
 });
 
 module.exports = mongoose.model('passengerRoutes', PassengerRoutesSchema);

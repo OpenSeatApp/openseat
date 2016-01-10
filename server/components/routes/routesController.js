@@ -82,6 +82,10 @@ module.exports = {
 
     findPassengerRoutes({ _id: passengerRouteId })
       .then(function(passengerRoute){
+        if (!passengerRoute){
+          return res.sendStatus(400);
+        }
+
         DriverRoutes.find({})
           .populate('driverInformation')
           .exec(function(error, driverRoutes){
@@ -128,13 +132,16 @@ module.exports = {
           name: passengerRoute.name,
           start: passengerRoute.start,
           end: passengerRoute.end,
+          startLabel: passengerRoute.startLabel,
+          endLabel: passengerRoute.endLabel,
           days: passengerRoute.days,
           endLabel : passengerRoute.endLabel,
           startLabel : passengerRoute.startLabel,
           fromHour: passengerRoute.fromHour,
           fromMinutes: passengerRoute.fromMinutes,
           toHour: passengerRoute.toHour,
-          toMinutes: passengerRoute.toMinutes
+          toMinutes: passengerRoute.toMinutes,
+          passengerInformation: user
         })
         .then(function(newRoute){
           user.PassengerRoutes.push(newRoute);
@@ -169,6 +176,8 @@ module.exports = {
           name : driverRoute.name,
           start: driverRoute.start,
           end: driverRoute.end,
+          startLabel: driverRoute.startLabel,
+          endLabel: driverRoute.endLabel,
           days: driverRoute.days,
           endLabel : driverRoute.endLabel,
           startLabel : driverRoute.startLabel,
@@ -190,17 +199,74 @@ module.exports = {
           console.log(error);
           next(error);
         });
+      })
+      .fail(function(error) {
+        console.log(error);
+        next(error);
       });
   },
 
   getDriverRoutes: function(req, res, next) {
-    findAllDriverRoutes()
-      .then(function(routes) {
-        res.status(200).json(routes);
+    DriverRoutes.find({})
+      .populate({
+        path: 'prospectivePassengerRoutes',
+        model: 'passengerRoutes'
       })
-      .fail(function(error) {
-        next(error);
+      .exec(function(error, routes){
+        if (error){
+          return res.sendStatus(400);
+        }
+        
+        res.status(200).json(routes);
+      });
+  },
+
+  getPassengerRoutesForUserId: function(req, res, next){
+    var passengerId = req.params.userId;
+    User.findOne({ _id: passengerId })
+      .populate({
+        path: 'PassengerRoutes',
+        populate: {
+          path: 'confirmedDriverRoute',
+          model: 'driverRoutes',
+          populate: {
+            path: 'driverInformation',
+            model: 'users'
+          }
+        }
+      })
+      .exec(function(error, user){
+        if (error){
+          return res.sendStatus(400);
+        }
+
+        res.status(200).json(user.PassengerRoutes);
+      });
+  },
+
+  getDriverRoutesForUserId: function(req, res, next){
+    var driverId = req.params.userId;
+    var numProspectivePassengerRoutes = 0;
+    var current = 0;
+
+    User.findOne({ _id: driverId })
+      .populate({
+            path: 'DriverRoutes',
+            populate: {
+              path: 'prospectivePassengerRoutes',
+              model: 'passengerRoutes',
+              populate: {
+                path: 'passengerInformation',
+                model: 'users'
+              }
+            }
+          })
+      .exec(function(error, user){
+        if (error){
+          return res.sendStatus(400);
+        }
+
+        res.status(200).json(user.DriverRoutes);
       });
   }
 };
-

@@ -17,9 +17,11 @@ module.exports = function (app, express) {
 
   app.post('/api/passengerRoute', routesController.insertPassengerRoute);
   app.get('/api/passengerRoute', routesController.getPassengerRoutes);
+  app.get('/api/passengerRoute/:userId', routesController.getPassengerRoutesForUserId);
 
   app.post('/api/driverRoute', routesController.insertDriverRoute);
   app.get('/api/driverRoute', routesController.getDriverRoutes);
+  app.get('/api/driverRoute/:userId', routesController.getDriverRoutesForUserId);
 
   app.get('/api/bestDriverRoutesForPassengerRouteId/:id', routesController.bestDriverRoutesForPassengerRouteId);
 
