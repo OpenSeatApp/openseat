@@ -7,6 +7,10 @@
   {{route.driverRoute.startLabel}}<br>
   {{route.driverRoute.endLabel}}<br>
   <div id="{{route.driverRoute._id}}"></div><br>
+  <div map-lazy-load="https://maps.google.com/maps/api/js" 
+    map-lazy-load-params="{{googleMapsUrl}}">
+    <ng-map center="{{route.driverRoute.start}}" zoom="14"></ng-map>
+  </div>
   {{route.driverRoute.start}}<br>
   {{route.driverRoute.end}}<br>
   <a href="" ng-click="selectDriverRoute(route.driverRoute._id)">Select Route</a>

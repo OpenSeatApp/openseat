@@ -8,16 +8,16 @@ module.exports = function(app, express) {
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client'));
-  // app.use(session({
-  //   secret: 'supersecret',
-  //   resave: false,
-  //   saveUninitialized: true
-  // }));
-  // app.use(passport.initialize());
-  // app.use(passport.session());
-  // app.use(function (err, req, res, next) {
-  //   if (err.name === 'UnauthorizedError') {
-  //     res.status(401).send('invalid token');
-  //   }
-  // });
+  app.use(session({
+    secret: 'supersecret',
+    resave: false,
+    saveUninitialized: true
+  }));
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      res.status(401).send('invalid token');
+    }
+  });
 };
