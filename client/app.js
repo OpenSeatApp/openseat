@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 
 
 angular.module('openSeatApp', ['ngRoute', 'openSeat.services', 'dashboardModule','routeSetupModule', 'selectDriverModule'])
 
+=======
+angular.module('openSeatApp', ['ngRoute', 'openSeat.services', 'dashboardModule', 'routeSetupModule'])
+>>>>>>> 4dd48a9732e153f7568f0b648f2389bb203f3786
   .config(['$routeProvider',
     function($routeProvider) {
       var checkLoggedin = function($q, $http, $location, $rootScope) {
