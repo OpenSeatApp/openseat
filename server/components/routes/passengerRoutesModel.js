@@ -14,9 +14,7 @@ var PassengerRoutesSchema = new mongoose.Schema({
   toHour: {min: 0, max: 24, type: Number},
   toMinutes: {min: 0, max: 60, type: Number},
 
-  endLabel: String,
   name: String,
-  startLabel: String,
   driverRoutesIAmInterestedIn: [{ type: mongoose.Schema.Types.ObjectId, ref: 'driverroutes' }],
   confirmedDriverRoute: {type: mongoose.Schema.Types.ObjectId, ref: 'driverroutes'}
 
