@@ -43,7 +43,7 @@
 				<h6>{{confirmedRoute.days}}</h6>
 				<a href="" ng-click="deleteConfirmedPassenger(confirmedRoute._id)">Delete Passenger</a>
 			</div>
-
+			<br>
 			<span ng-show= "route.prospectivePassengerRoutes.length > 0">Prospective Passengers:</span>
 			<span ng-show= "route.prospectivePassengerRoutes.length <= 0">No Prospective Passengers</span>
 			<div ng-repeat='prospectiveRoute in route.prospectivePassengerRoutes track by $index'>
@@ -53,12 +53,11 @@
 				<h6>To: {{prospectiveRoute.endLabel}}</h6>
 				<h6>{{prospectiveRoute.fromHour}}:{{prospectiveRoute.fromMinutes}} to {{prospectiveRoute.toHour}}:{{prospectiveRoute.toMinutes}}</h6>
 				<h6>{{prospectiveRoute.days}}</h6>
-				<a href="" ng-click="confirmPassenger(prospectiveRoute._id)">Confirm Passenger</a>
+				<a href="" ng-click="confirmPassenger(prospectiveRoute._id, route._id)">Confirm Passenger</a>
 			</div>
 
 			<br>
 			<hr>
-			<br>
 		</div>
 
 	</div>

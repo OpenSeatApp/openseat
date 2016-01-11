@@ -51,21 +51,16 @@ module.exports = {
 
     findDriverRoutes({ _id: driverRouteId })
       .then(function(driverRoute){
-
         findPassengerRoutes({ _id: passengerRouteId })
           .then(function(passengerRoute){
             driverRoute.confirmedPassengerRoutes.push(passengerRoute);
             passengerRoute.confirmedDriverRoute = driverRoute;
+
+            driverRoute.prospectivePassengerRoutes.splice(driverRoute.prospectivePassengerRoutes.indexOf(passengerRouteId), 1);
+            passengerRoute.driverRoutesIAmInterestedIn.splice(passengerRoute.driverRoutesIAmInterestedIn.indexOf(driverRouteId), 1);
+
             passengerRoute.save();
             driverRoute.save();
-
-            updatePassengerRoutes({ _id: passengerRouteId },
-              { $pull: { driverRoutesIAmInterestedIn: { _id: driverRouteId } } }
-            );
-
-            updateDriverRoutes({ _id: driverRouteId },
-              { $pull: { prospectivePassengerRoutes: { _id: passengerRouteId } } }
-            );
 
             res.sendStatus(200);
           });
@@ -208,6 +203,10 @@ module.exports = {
         path: 'prospectivePassengerRoutes',
         model: 'passengerRoutes'
       })
+      .populate({
+        path: 'confirmedPassengerRoutes',
+        model: 'passengerRoutes'
+      })
       .exec(function(error, routes){
         if (error){
           return res.sendStatus(400);
@@ -243,13 +242,11 @@ module.exports = {
     var numProspectivePassengerRoutes = 0;
     var current = 0;
 
-//confirmedPassengerRoutes
-
     User.findOne({ _id: driverId })
       .populate({
             path: 'DriverRoutes',
             populate: {
-              path: 'prospectivePassengerRoutes',
+              path: 'prospectivePassengerRoutes confirmedPassengerRoutes',
               model: 'passengerRoutes',
               populate: {
                 path: 'passengerInformation',
@@ -257,19 +254,19 @@ module.exports = {
               }
             }
           })
-      .populate({
-              path: 'confirmedPassengerRoutes',
-              model: 'passengerRoutes',
-              populate: {
-                path: 'passengerInformation',
-                model: 'users'
-              }
-            })
       .exec(function(error, user){
         if (error){
           return res.sendStatus(400);
         }
-        res.status(200).json(user.DriverRoutes);
+
+        var options = {
+              path: 'DriverRoutes.confirmedPassengerRoutes.passengerInformation',
+              model: 'users'
+            };
+
+        User.populate(user, options, function(err, results){
+          res.status(200).json(results.DriverRoutes);
+        });
       });
   }
 };

@@ -111,7 +111,7 @@ angular.module('openSeat.services', [])
 				});
 		};
 
-		var userInterestedInDriverRoute = function(passengerRouteId, driverRouteId) {
+		var userInterestedInDriverRoute = function(passengerRouteId, driverRouteId, callback) {
 			return $http({
 				method: 'POST',
 				url: '/api/userInterestedInDriverRoute/',
@@ -119,6 +119,23 @@ angular.module('openSeat.services', [])
 					passengerRouteId: passengerRouteId,
 					driverRouteId: driverRouteId
 				}
+			})
+			.then(function() {
+				callback();
+			});
+		};
+
+		var driverConfirmsPassenger = function(driverRouteId, passengerRouteId, callback){
+			return $http({
+				method: 'POST',
+				url: '/api/driverConfirmsPassenger/',
+				data: {
+					passengerRouteId: passengerRouteId,
+					driverRouteId: driverRouteId
+				}
+			})
+			.then(function() {
+				callback();
 			});
 		};
 
@@ -140,6 +157,7 @@ angular.module('openSeat.services', [])
 			bestDriverRoutesForPassengerRouteId: bestDriverRoutesForPassengerRouteId,
 			userInterestedInDriverRoute: userInterestedInDriverRoute,
 			getPassengerRoutesForUserId: getPassengerRoutesForUserId,
-			getDriverRoutesForUserId: getDriverRoutesForUserId
+			getDriverRoutesForUserId: getDriverRoutesForUserId,
+			driverConfirmsPassenger: driverConfirmsPassenger
 		};
 	});

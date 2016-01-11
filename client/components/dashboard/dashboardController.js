@@ -17,11 +17,12 @@ angular.module('dashboardModule', [])
 	};
 
 	$scope.deleteConfirmedPassenger = function(passengerRouteId){
-		console.log(passengerRouteId);
 	};
 
-	$scope.confirmPassenger = function(passengerRouteId){
-		console.log(passengerRouteId);
+	$scope.confirmPassenger = function(passengerRouteId, driverRouteId){
+		Routes.driverConfirmsPassenger(driverRouteId, passengerRouteId, function(){
+			//TODO
+		});
 	};
 	
 	$scope.username = 'Hello ' + $rootScope.user.name;
