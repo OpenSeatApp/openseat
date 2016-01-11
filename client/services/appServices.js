@@ -129,7 +129,7 @@ angular.module('openSeat.services', [])
 				});
 		};
 
-		var getDriverRoutesForUserId = function(driverId){
+		var getDriverRoutesForUserId = function(driverId, callback){
 			$http.get('/api/driverRoute/' + driverId)
 				.then(function(driverRoutes) {
 					callback(driverRoutes.data);

@@ -19,6 +19,13 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'name','picture.type(large)', 'emails', 'displayName', 'about', 'gender']
   },
   function(accessToken, refreshToken, profile, done) {
+
+    //TODO Hack to log by driver
+    profile.id = "2";
+    profile.displayName = "Leonel Messi";
+    profile.photos[0].value = "https://38.media.tumblr.com/avatar_09149a3e01bd_128.png";
+    //TODO end
+
     process.nextTick(function () {
       usersController
         .findByFacebookId(profile.id)

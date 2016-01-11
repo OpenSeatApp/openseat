@@ -135,8 +135,6 @@ module.exports = {
           startLabel: passengerRoute.startLabel,
           endLabel: passengerRoute.endLabel,
           days: passengerRoute.days,
-          endLabel : passengerRoute.endLabel,
-          startLabel : passengerRoute.startLabel,
           fromHour: passengerRoute.fromHour,
           fromMinutes: passengerRoute.fromMinutes,
           toHour: passengerRoute.toHour,
@@ -179,8 +177,6 @@ module.exports = {
           startLabel: driverRoute.startLabel,
           endLabel: driverRoute.endLabel,
           days: driverRoute.days,
-          endLabel : driverRoute.endLabel,
-          startLabel : driverRoute.startLabel,
           fromHour: driverRoute.fromHour,
           fromMinutes: driverRoute.fromMinutes,
           toHour: driverRoute.toHour,
@@ -216,7 +212,6 @@ module.exports = {
         if (error){
           return res.sendStatus(400);
         }
-        
         res.status(200).json(routes);
       });
   },
@@ -239,7 +234,6 @@ module.exports = {
         if (error){
           return res.sendStatus(400);
         }
-
         res.status(200).json(user.PassengerRoutes);
       });
   },
@@ -248,6 +242,8 @@ module.exports = {
     var driverId = req.params.userId;
     var numProspectivePassengerRoutes = 0;
     var current = 0;
+
+//confirmedPassengerRoutes
 
     User.findOne({ _id: driverId })
       .populate({
@@ -261,11 +257,18 @@ module.exports = {
               }
             }
           })
+      .populate({
+              path: 'confirmedPassengerRoutes',
+              model: 'passengerRoutes',
+              populate: {
+                path: 'passengerInformation',
+                model: 'users'
+              }
+            })
       .exec(function(error, user){
         if (error){
           return res.sendStatus(400);
         }
-
         res.status(200).json(user.DriverRoutes);
       });
   }

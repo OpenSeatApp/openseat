@@ -15,9 +15,17 @@ angular.module('dashboardModule', [])
 			$scope.driverRoutes = driverRoutes;
 		});
 	};
+
+	$scope.deleteConfirmedPassenger = function(passengerRouteId){
+		console.log(passengerRouteId);
+	};
+
+	$scope.confirmPassenger = function(passengerRouteId){
+		console.log(passengerRouteId);
+	};
 	
 	$scope.username = 'Hello ' + $rootScope.user.name;
-	if ($rootScope.user.isDriver){
+	if ($rootScope.user.IsDriver){
 		initializeDriverRoutes($rootScope.user._id);
 	} else {
 		initializePassengerRoutes($rootScope.user._id);
