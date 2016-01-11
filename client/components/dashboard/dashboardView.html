@@ -5,24 +5,36 @@
 		<h1>{{username}}</h1>
 		<p></p>
 	</div>
+
 	<div>
-		<ul ng-repeat = 'route in routes track by $index'>
+
+		<ul ng-repeat = 'route in passengerRoutes track by $index' ng-hide = "user.isDriver">
 			<li>
-			<div class = 'routeRender' ng-class = "route.confirmedDriverRoute ? 'confirmed' : 'notConfirmed'">
-
-
-				<h3>{{route.itinerary.from}}</h3>
-				<h3>{{route.itinerary.to}}</h3>
-				<h4>{{route.days}}</h4>
-				<h3 ng-hide = "route.confirmedDriverRoute">No drivers have accepted the ride yet. </h2>
-				<div ng-show = "route.confirmedDriverRoute"class = 'driverInfo'>
-					<p>{{route.confirmedDriver.name}}</p>
-					<p>{{route.confirmedDriver.phoneNumber}}</p>
-					<img ng-src={{route.confirmedDriver.photo}}>
+				<div class = 'routeRender' ng-class = "route.confirmedDriverRoute ? 'confirmed' : 'notConfirmed'">
+					<h3>From: {{route.startLabel}}</h3>
+					<h3>To: {{route.endLabel}}</h3>
+					<h3>{{route.fromHour}}:{{route.fromMinutes}} to {{route.toHour}}:{{route.toMinutes}}</h3>
+					<h4>{{route.days}}</h4>
+					<h3 ng-hide = "route.confirmedDriverRoute">No drivers have accepted the ride yet. </h2>
+					<div ng-show = "route.confirmedDriverRoute"class = 'driverInfo'>
+						<p>{{route.confirmedDriverRoute.driverInformation.name}}</p>
+						<p>{{route.confirmedDriverRoute.driverInformation.phoneNumber}}</p>
+						<img ng-src={{route.confirmedDriverRoute.driverInformation.picture}}/>
+					</div>
 				</div>
-
-			</div>
 			</li>
 		</ul>
+
+		<ul ng-repeat = 'route in driverRoutes track by $index' ng-hide = "!user.isDriver">
+			<li>
+				<div class = 'routeRender'>
+					<h3>From: {{route.startLabel}}</h3>
+					<h3>To: {{route.endLabel}}</h3>
+					<h3>{{route.fromHour}}:{{route.fromMinutes}} to {{route.toHour}}:{{route.toMinutes}}</h3>
+					<h4>{{route.days}}</h4>
+				</div>
+			</li>
+		</ul>
+
 	</div>
 </div>
