@@ -34,15 +34,16 @@
 	text-decoration: none;
 	color: #333;
 	text-transform: uppercase;
+	width: 15.5vw;
 	font-weight: normal;
 	line-height: 50px;
 	font-size: 14px;
-	padding: 0px;
+	padding: 0px 0px 0px 5px;
 	font-size: 1vw;
-	padding: 4px 0px;
 }
 
 .dashboardMenu p:hover {
+	background-color: #DDD;
 	cursor: pointer;
 	cursor: hand;
 }

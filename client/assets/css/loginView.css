@@ -22,3 +22,7 @@
 	padding: 5px;
 	box-shadow: 3px 3px 3px #555;
 }
+
+.loginButton a:hover {
+	background-color: #7171E1;
+}
