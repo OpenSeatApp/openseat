@@ -1,4 +1,4 @@
-angular.module('openSeatApp', ['ngRoute', 'openSeat.services', 'dashboardModule','routeSetupModule', 'selectDriverModule', 'ngMap'])
+angular.module('openSeatApp', ['ngRoute', 'loginModule','openSeat.services', 'dashboardModule','routeSetupModule', 'selectDriverModule', 'ngMap'])
   .config(['$routeProvider',
     function($routeProvider) {
       var checkLoggedin = function($q, $http, $location, $rootScope) {
@@ -41,10 +41,39 @@ angular.module('openSeatApp', ['ngRoute', 'openSeat.services', 'dashboardModule'
         }
       }).
       when('/login', {
-        templateUrl: './components/login/loginView.html',
+        templateUrl: './components/login/loginView.html'
       }).
       otherwise({
         redirectTo: '/home'
       });
     }
-  ]);
+  ])
+  .controller('appController', function($rootScope, $scope){
+    if($rootScope.status === 'login'){
+      $scope.path = 'api/logout';
+      $scope.status = 'logout';
+    } else {
+      $scope.path = '/api/auth/facebook';
+      $scope.status = 'login';
+    }
+
+    $scope.loginOrOut = function(){
+      if($rootScope.status === 'logout'){
+        $rootScope.status = 'login';
+      } else {
+        $rootScope.status = 'logout';
+      }
+    };
+  });
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,28 +2,54 @@ angular.module('routeSetupModule', [])
 	.controller('routeSetupCtrl', function(PostRoute, $scope, $rootScope) {
 		var geocoder = initMap();
 		$(document).ready(function() {
+			$('#toTime').timepicker({ 'scrollDefault': 'now' });
+			$('#fromTime').timepicker({'scrollDefault' : 'now'});
+			$('#toTime').timepicker('setTime', new Date())
+			$('#fromTime').timepicker('setTime', new Date())
 			$('body').click(function() {
-				if ($('#isDriver').prop('checked')) {
-					$(".driver").show();
+				if ($('.driverToggle').hasClass('selected')) {
+					$(".isDriver").show();
 				} else {
-					$(".driver").hide();
+					$(".isDriver").hide();
 				}
 			});
+			$('.driverToggle').on('click', function(){
+				var $this = $(this)
+				if($this.hasClass('selected')){
+					$this.removeClass('selected');
+				} else {
+					$(this).addClass('selected');
+				}
+				
+			});
+			$('.dayToggle').on('click', function(){
+				var $this = $(this)
+				if($this.hasClass('selected')){
+					$this.removeClass('selected');
+				} else {
+					$(this).addClass('selected');
+				}
+				
+			});
 		});
-
+	
 		$scope.submitRoute = function() {
-
-			var monday = $('#monday').prop('checked');
-			var tuesday = $('#tuesday').prop('checked');
-			var wednesday = $('#wednesday').prop('checked');
-			var thursday = $('#thursday').prop('checked');
-			var friday = $('#friday').prop('checked');
-			var saturday = $('#saturday').prop('checked');
-			var sunday = $('#sunday').prop('checked');
+			var monday = $('#monday').hasClass('selected');
+			var tuesday = $('#tuesday').hasClass('selected');
+			var wednesday = $('#wednesday').hasClass('selected');
+			var thursday = $('#thursday').hasClass('selected');
+			var friday = $('#friday').hasClass('selected');
+			var saturday = $('#saturday').hasClass('selected');
+			var sunday = $('#sunday').hasClass('selected');
+			var fromTime = $('#fromTime').val().split(':');
+			fromTime[2] = fromTime[1].slice(2);
+			fromTime[1] = fromTime[1].slice(0,2);
+			var toTime = $('#toTime').val();
+			console.log(fromTime)
 
 			var routeObj = {};
 			routeObj.days = [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
-			routeObj.fromHour = Number($('#fromHour').val());
+			routeObj.fromHour = fromTime;
 			routeObj.fromMinutes = Number($('#fromMinutes').val());
 			routeObj.toHour = Number($('#toHour').val());
 			routeObj.toMinutes = Number($('#toMinutes').val());

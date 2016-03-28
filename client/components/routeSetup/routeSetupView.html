@@ -2,24 +2,30 @@
 
 <div class = 'routeForm'>
 	<form>
-		<h1>Set up your route here</h1>
-
-		<span>Start Address<input id = 'startAddress' type="text"></span>
-		<span>End Address<input id = 'endAddress' type="text"></span>
-		<span>From Hour<input id = 'fromHour' type="text"></span>
-		<span>From Min<input id = 'fromMinutes' type="text"></span>
-		<span>To Hour<input id = 'toHour' type="text"></span>
-		<span>To Min<input id = 'toMinutes' type="text"></span>
-		<span>Monday<input id = 'monday' type = 'checkbox'></span>
-		<span>Tuesday<input id = 'tuesday' type = 'checkbox'></span>
-		<span>Wednesday<input id = 'wednesday' type = 'checkbox'></span>
-		<span>Thursday<input id = 'thursday' type = 'checkbox'></span>
-		<span>Friday<input id = 'friday' type = 'checkbox'></span>
-		<span>Saturday<input id = 'saturday' type = 'checkbox'></span>
-		<span>Sunday<input id = 'sunday' type = 'checkbox'></span>
-		<span>I'm a driver<input id = 'isDriver' type="checkbox"></span>
-		<span class = 'driver' style="display: none;">Seats<input id = 'seats' type="text"></span>
-		<span class = 'driver' style="display: none;">Fee<input id = 'fee' type="text"></span>
-		<input id = 'submitRoute' ng-click= "submitRoute()" type="button" value= 'submit'>
+		<div class = 'location'>
+			<label><input class = 'userInput' id = 'startAddress' placeholder = 'Start Address' type="text"></label>
+			<label><input class = 'userInput'id = 'endAddress' placeholder = 'End Address' type="text"></label>
+		</div>
+		<div class = 'timeField'>
+			<label for = 'fromTime'>Leaving between<input id="fromTime" type="text" class="userInput time ui-timepicker-input" autocomplete="off"></label>
+			<label for = 'toTime'>and<input id="toTime" type="text" class="userInput time ui-timepicker-input" autocomplete="off"></label>
+		</div>
+		<div class = 'days'>
+			<span class = 'dayToggle' id = 'sunday'>Su</span>
+			<span class = 'dayToggle' id = 'monday'>M</span>
+			<span class = 'dayToggle' id = 'tuesday'>Tu</span>	
+			<span class = 'dayToggle' id = 'wednesday'>W</span>
+			<span class = 'dayToggle' id = 'thursday'>Th</span>
+			<span class = 'dayToggle' id = 'friday'>F</span>
+			<span class = 'dayToggle' id = 'saturday'>Sa</span>
+		</div>
+		<div class = 'driver'>
+			<span class = 'driverToggle'>I am driving</span>
+			<input class = 'isDriver' style="display: none;" id = 'seats' placeholder = 'Open seats' type="text">
+			<input class = 'isDriver' style="display: none;" id = 'fee' placeholder="Fee per ride" type="text">
+		</div>
+		<div class = 'submit'>
+			<span class = 'submitRoute' ng-click= "submitRoute()">Submit</span>
+		</div>
 	</form>
 </div>

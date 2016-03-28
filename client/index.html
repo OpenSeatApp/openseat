@@ -5,32 +5,32 @@
   <meta charset="utf-8">
   <meta name="description" content="Simple Map">
   <meta name="keywords" content="ng-map,AngularJS,center">
-	<link rel="stylesheet" type="text/css" href="./assets/css/mainView.css">
+	<link rel="stylesheet" href="./assets/css/mainView.css">
+	<link rel="stylesheet" href="./lib/jt.timepicker/jquery.timepicker.css">
 	<link rel="stylesheet" href="./assets/css/dashboardView.css">
-	<link rel="stylesheet" href="./assets/css/routeSetupView.css">
 	<link rel="stylesheet" href="./assets/css/selectDriverView.css">
 	<link rel="stylesheet" href="./assets/css/loginView.css">
   <title>OpenSeat</title>
 </head>
 <body ng-app = 'openSeatApp'>
-	<div class = 'logo'>	
-	  <p >OpenSeat</p>
-	</div>
-	<div class = 'menuBar'>
+	<div class = 'menuBar' ng-controller = 'appController'>
+		<h1>OpenSeat</h1>
 	  <ul>
-	  	<li><a href="#/home">Home</a></li>
-	  	<li><a href="#/createRoute">Create Route</a></li>
-	  	<li><a href="/api/logout">Logout</a></li>
+	  	<li><a href="#/home">Dashboard</a></li>
+	  	<li><a ng-href="/api/logout">logout</a></li>
   	</ul>
 	</div>
+	<div class = 'buffer'></div>
 	<div ng-view></div>
 
 	<script src = './lib/jquery/dist/jquery.js'></script>
+	<script src = './lib/jt.timepicker/jquery.timepicker.js'></script>
 	<script src = './lib/angular/angular.js'></script>
 	<script src = './lib/angular-route/angular-route.js'></script>
 	<script src = './services/appServices.js'></script>
 	<script src = './app.js'></script>
 	<script src = './components/dashboard/dashboardController.js'></script>
+	<script src = './components/login/loginController.js'></script>
 	<script src = './components/routeSetup/routeSetupController.js'></script>
 	<script src = './components/selectDriver/selectDriverController.js'></script>
 	<script src = './components/routeSetup/geocodeConverter.js'></script>

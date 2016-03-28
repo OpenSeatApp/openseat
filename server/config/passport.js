@@ -12,8 +12,8 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new FacebookStrategy({
-    clientID: process.env.FACEBOOK_APP_ID,
-    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    clientID: process.env.FACEBOOK_APP_ID || '216260968711459',
+    clientSecret: process.env.FACEBOOK_APP_SECRET || '48f4bf845f8fc37abf9faceb51d894cd',
     callbackURL: constants.API_URL + "/api/auth/facebook/callback",
     enableProof: true,
     //fields from facebook profile that openSeat uses

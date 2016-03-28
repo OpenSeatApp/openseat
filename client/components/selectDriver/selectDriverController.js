@@ -21,7 +21,7 @@ angular.module('selectDriverModule', ['ngMap'])
     }
 
     NgMap.getMap().then(function (map) {
-      $scope.googleMapsUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBytwzUydYLU_mL4X0hN4WvGLDfTQkWNJs';
+      //$scope.googleMapsUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBytwzUydYLU_mL4X0hN4WvGLDfTQkWNJs';
     });
 
     $scope.selectDriverRoute = function(driverRouteId){
