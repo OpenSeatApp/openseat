@@ -66,7 +66,7 @@ angular.module('dashboardModule', [])
 	// that represend the days and returns a string with the requested days.
 
 	var setDays = function(arrayOfRoutes, isDriver) {
-		var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+		var days = ['M', 'Tu', 'W', 'Th', 'F', 'Sa', 'Su'];
 		for (var i = 0; i < arrayOfRoutes.length; i++) {
 			if (isDriver) {
 				setDays(arrayOfRoutes[i].confirmedPassengerRoutes);
@@ -75,10 +75,10 @@ angular.module('dashboardModule', [])
 			if (arrayOfRoutes[0]) {
 				arrayOfRoutes[i].days = arrayOfRoutes[i].days.reduce(function(memo, day, index) {
 					if (day) {
-						memo = memo.concat(days[index] + ' ');
+						memo = memo.concat(days[index]);
 					}
 					return memo;
-				}, '');
+				}, []);
 			}
 		}
 		return arrayOfRoutes;

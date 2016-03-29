@@ -3,8 +3,10 @@
 	padding: 0px;
 	font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: normal;
+}
 
-
+b {
+	font-weight: bold;
 }
 
 html { 

@@ -70,7 +70,7 @@ angular.module('openSeat.services', [])
 				route.itinerary = {};
 				route.itinerary.from = 'From: ' + route.start;
 				route.itinerary.to = 'To: ' + route.end;
-				route.days = 'Days confirmed: ' + route.days.join(' ');
+				route.days = route.days;
 				if (!route.confirmedDriverRoute) {
 					route.message = 'No driver has been confirmed';
 				}
@@ -79,6 +79,7 @@ angular.module('openSeat.services', [])
 
 			$scope.picture = user.picture;
 			$scope.routes = user.PassengerRoutes;
+			console.log(user.PassengerRoutes[0].days)
 		};
 
 		return userMethods;
