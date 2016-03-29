@@ -85,13 +85,10 @@
 .routeRender {
 	padding: 10px;
 	width: 50vw;
-	height: 10vh;
-	margin: auto;
+	height: 12vh;
 	position: relative;
-	z-index: 2;
 	margin-top: 1vw;
 	box-shadow: 2px 2px 1px #AAA;
-	justify-content: space-around;
 }
 
 
@@ -125,7 +122,7 @@
 	height: 100px;
 }
 .singleRoute .driverInfo p {
-	font-size: 1.1vw;
+	font-size: 1vw;
 }
 
 .driverInfo .nameDays {
@@ -169,13 +166,16 @@
 	width: 30vw;
 	line-height: 3vh;
 	padding-left: .5vw;
-	font-size: 1.1vw;
+	font-size: 1vw;
 }
 
 .rideInfo {
 	position: absolute;
+	padding: 1vh 0px;
 	width: 30vw;
 	float: left;
+	background-color: white;
+	box-shadow: 1px 1px 2px #AAA;
 }
 .toFrom {
 	height: 4vh;
@@ -196,7 +196,7 @@
 }
 
 .userInput, .isDriver {
-	font-size: 1.1vw;
+	font-size: .9vw;
 	width: 45%;
 	height: 30px;
 	padding-left: 4px;
@@ -237,7 +237,7 @@
 	height: 4vh;
 	line-height: 5vh;
 	width: 100%;
-	font-size: 1.1vw;
+	font-size: .9vw;
 }
 .selectedDays {
 	height: 11vh;

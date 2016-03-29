@@ -46,9 +46,9 @@
 				<li>
 					<div class='routeRender' ng-class="route.confirmedDriverRoute ? 'confirmed' : 'notConfirmed'">
 						<div class = 'rideInfo'>
-							<p class = 'from'>{{route.startLabel}} to {{route.endLabel}}</p>
-							<p class = 'timeWindow'> Leaving between {{route.fromHour > 12 ? route.fromHour-12 : route.fromHour}}:{{route.fromHour > 11 ? route.fromMinutes + "PM" : route.fromMinutes + "AM"}} and {{route.toHour > 12 ? route.toHour-12 : route.toHour}}:{{route.toHour > 11 ? route.fromMinutes + "PM" : route.fromMinutes + "AM"}}</p>
-							<p class = 'noDrivers' ng-hide= "route.confirmedDriverRoute">No drivers have accepted the ride yet. </p>
+							<p class = 'from'><b>{{route.startLabel}}</b> to <b>{{route.endLabel}}</b></p>
+							<p class = 'timeWindow'> Leaving between <b>{{route.fromHour > 12 ? route.fromHour-12 : route.fromHour}}:{{route.fromHour > 11 ? route.fromMinutes + "PM" : route.fromMinutes + "AM"}}</b> and <b>{{route.toHour > 12 ? route.toHour-12 : route.toHour}}:{{route.toHour > 11 ? route.fromMinutes + "PM" : route.fromMinutes + "AM"}}</b></p>
+							<p class = 'noDrivers' ng-hide= "route.confirmedDriverRoute"><i> No drivers have accepted the ride yet. </i></p>
 						</div>
 					<div class = 'selectedDays'>
 						<ul><li ng-repeat= 'day in route.days' ><div class = 'singleDay'>{{day}}</div></li></ul>
