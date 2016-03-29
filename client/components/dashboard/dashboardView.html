@@ -5,7 +5,7 @@
 			<li><p id = 'waiting' data-forElement = 'all'>all rides</p></li>
 			<li><p id = 'confirmed' data-forElement = 'confirmed'>confirmed rides</p></li>
 			<li><p id = 'pending' data-forElement = 'notConfirmed'>pending rides</p></li>
-			<li><p id = "createRoute" data-forElement = 'routeForm'>Create Route</p></li>
+			<li><p id = "createRoute" data-forElement = 'routeForm'>Create Ride</p></li>
 		</ul>
 	</div>
 	<div class = 'sideBuffer'></div>
@@ -41,6 +41,7 @@
 		</div>
 
 		<div class = 'allRoutes' >
+		<div class = 'noRouteMessage' ng-hide= "passengerRoutes[0]"><p> You have no routes created. Go make your first one!</p></div>	
 		<ul ng-repeat= 'route in passengerRoutes track by $index' ng-hide= "user.IsDriver">
 				<li>
 					<div class='routeRender' ng-class="route.confirmedDriverRoute ? 'confirmed' : 'notConfirmed'">
@@ -61,7 +62,6 @@
 					</div>
 				</li>
 			</ul>
-
 			<div ng-repeat= 'route in driverRoutes track by $index' ng-show= "user.IsDriver">
 			<div class = 'singleRoute'>
 				
