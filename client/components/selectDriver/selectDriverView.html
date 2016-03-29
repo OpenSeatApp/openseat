@@ -1,4 +1,4 @@
-
+<div class = 'noRouteMessage' ng-hide= "driverRoutes[0]"><p> Unfortunately, there are currently no compatible drivers at this time.</p></div>
 <div id = 'driverInfo'  class = 'notChecked' ng-repeat = 'route in driverRoutes track by $index'>
 	<div class = 'driver'>
 		<table ng-click="selectDriverRoute(route.driverRoute._id)">

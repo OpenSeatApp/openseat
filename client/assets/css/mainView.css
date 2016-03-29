@@ -26,7 +26,7 @@ h1 {
 }
 
 .buffer, .menuBar {
-	height: 9vh;
+	height: 65px;
 	width: 100vw;
 }
 
@@ -48,7 +48,7 @@ h1 {
 	color: rgba(255,255,255,.7);
 	margin-left: 1vw;
 	padding: 0px;
-	line-height: 9vh;
+	line-height: 65px;
 	display: block;
 	float: left;
 }
@@ -68,4 +68,21 @@ h1 {
 
 .menuBar ul li a:hover {
 	color: white;
+}
+
+.noRouteMessage {
+	width: 40vw;
+	padding: 1vw;
+	height: 7vw;
+	background-color: #EEE;
+	box-shadow: 2px 2px 1px #888;
+	margin: 8vw auto;
+}
+.noRouteMessage p {
+	text-align: center;
+	line-height: 7vw;
+	background-color: white;
+	font-size: 1vw;
+	box-shadow: 1px 1px 1px #999;
+
 }

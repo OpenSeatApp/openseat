@@ -41,8 +41,7 @@
 		</div>
 
 		<div class = 'allRoutes' >
-
-			<ul ng-repeat= 'route in passengerRoutes track by $index' ng-hide= "user.IsDriver">
+		<ul ng-repeat= 'route in passengerRoutes track by $index' ng-hide= "user.IsDriver">
 				<li>
 					<div class='routeRender' ng-class="route.confirmedDriverRoute ? 'confirmed' : 'notConfirmed'">
 						<div class = 'rideInfo'>

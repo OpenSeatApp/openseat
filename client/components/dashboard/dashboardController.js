@@ -19,7 +19,6 @@ angular.module('dashboardModule', [])
 
 		$('#navTools').on('click', 'p', function(){
 			var element = $(this).attr('data-forElement');
-			console.log('here', element, shownElement)
 			if(element !== shownElement){
         if(element === 'routeForm'){
           $('.allRoutes').hide();
@@ -61,7 +60,11 @@ angular.module('dashboardModule', [])
 			
 		});
 	});
-
+	$scope.checkStatus = function(status){
+		console.log(status)
+		console.log($('.' + status).length)
+		return $('.' + status).length
+	}
 	// This function takes an array of routes and iterates over it replacing the array of booleans
 	// that represend the days and returns a string with the requested days.
 

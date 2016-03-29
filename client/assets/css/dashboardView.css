@@ -83,11 +83,11 @@
 	padding: 8px;
 }*/
 .routeRender {
-	padding: 10px;
+	padding: 2vw;
 	width: 50vw;
 	height: 12vh;
 	position: relative;
-	margin-top: 1vw;
+	margin: 1.5vh 2vw 1.5vh 1vw;
 	box-shadow: 2px 2px 1px #AAA;
 }
 
@@ -153,10 +153,9 @@
 	z-index: 1;
 	box-shadow: 2px 2px 1px #888;
 	float: left;
-	width: 90%;
+	width: 58vw;
 	background-color: #EEE;
 	margin: 3vh auto;
-	padding: 10px;
 }
 
 .from, .timeWindow{
@@ -248,7 +247,7 @@
 }
 
 .dayToggle, .singleDay {
-	width: 40px;
+	width: 4vw;
 }
 .location, .timeField {
 	padding-left: 10px;
